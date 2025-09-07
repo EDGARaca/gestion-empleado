@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+
+  label { font-weight: 600; margin-bottom: 6px; }
+  input { padding: 8px; }
+  small { color: #b00020; }
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}

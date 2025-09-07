@@ -1,0 +1,39 @@
+<div class="toolbar">
+  <h2>Empleados</h2>
+  <button (click)="newEmployee()">+ Nuevo</button>
+</div>
+
+<div *ngIf="loading">Cargando...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<table *ngIf="!loading && !error && employees.length">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Cargo</th>
+      <th>Salario</th>
+      <th>Fecha Ingreso</th>
+      <th>Activo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of employees">
+      <td>{{ e.firstName }} {{ e.lastName }}</td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.position }}</td>
+      <td>{{ e.salary | currency:'USD' }}</td>
+      <td>{{ e.hireDate | date:'yyyy-MM-dd' }}</td>
+      <td>{{ e.isActive ? 'Sí' : 'No' }}</td>
+      <td>
+        <button (click)="editEmployee(e)">Editar</button>
+        <button (click)="deleteEmployee(e)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!loading && !error && !employees.length">
+  No hay empleados. Crea el primero.
+</p>

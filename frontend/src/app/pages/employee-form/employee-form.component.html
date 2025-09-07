@@ -1,0 +1,54 @@
+<h2>{{ title }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="row">
+    <label>Nombre</label>
+    <input formControlName="firstName" />
+    <small *ngIf="form.controls.firstName.touched && form.controls.firstName.invalid">
+      Mínimo 2 caracteres
+    </small>
+  </div>
+
+  <div class="row">
+    <label>Apellido</label>
+    <input formControlName="lastName" />
+    <small *ngIf="form.controls.lastName.touched && form.controls.lastName.invalid">
+      Mínimo 2 caracteres
+    </small>
+  </div>
+
+  <div class="row">
+    <label>Email</label>
+    <input formControlName="email" type="email" />
+    <small *ngIf="form.controls.email.touched && form.controls.email.invalid">
+      Email inválido
+    </small>
+  </div>
+
+  <div class="row">
+    <label>Cargo</label>
+    <input formControlName="position" />
+  </div>
+
+  <div class="row">
+    <label>Salario</label>
+    <input formControlName="salary" type="number" />
+  </div>
+
+  <div class="row">
+    <label>Fecha Ingreso</label>
+    <input formControlName="hireDate" type="date" />
+  </div>
+
+  <div class="row">
+    <label>Activo</label>
+    <input formControlName="isActive" type="checkbox" />
+  </div>
+
+  <div class="actions">
+    <button type="submit" [disabled]="loading">{{ id ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="cancel()">Cancelar</button>
+  </div>
+</form>
+
+<div *ngIf="loading">Guardando...</div>
