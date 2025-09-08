@@ -28,11 +28,17 @@
   <div class="row">
     <label>Cargo</label>
     <input formControlName="position" />
+    <small *ngIf="form.controls.position.touched && form.controls.position.invalid">
+      Campo obligatorio
+    </small>  
   </div>
 
   <div class="row">
     <label>Salario</label>
     <input formControlName="salary" type="number" />
+    <small *ngIf="form.controls.position.touched && form.controls.position.invalid">
+      Salario debe ser mayor o igual a 0
+    </small>
   </div>
 
   <div class="row">
@@ -50,5 +56,6 @@
     <button type="button" (click)="cancel()">Cancelar</button>
   </div>
 </form>
+
 
 <div *ngIf="loading">Guardando...</div>

@@ -23,27 +23,38 @@ export class EmployeesListComponent implements OnInit {
     this.loading = true;
     this.error = null;
     this.employeesSvc.list().subscribe({
-      next: (data) => { this.employees = data; this.loading = false; },
-      error: (err) => { this.error = err?.error?.message || 'Error al cargar'; this.loading = false; }
+      next: (data) => { 
+        console.log('Empleados recibidos:', data); // Validación directa
+        this.employees = data;
+        this.loading = false;
+       },
+      error: (err) => {
+        console.error('Error al cargar empleados:', err); // Diagnóstico visual 
+        this.error = err?.error?.message || 'Error al cargar'; 
+        this.loading = false; 
+       }
     });
   }
 
   newEmployee(): void {
     this.router.navigate(['/employees/new']);
-  }
+  } //Redirige al formulario de creación
 
   editEmployee(emp: Employee): void {
     if (!emp._id) return;
     this.router.navigate(['/employees', emp._id, 'edit']);
-  }
+  } //Redirige al formulario de edición.
 
   deleteEmployee(emp: Employee): void {
     if (!emp._id) return;
-    const ok = confirm(`¿Eliminar a ${emp.firstName} ${emp.lastName}?`);
+    const ok = confirm('¿Eliminar a ${emp.firstName} ${emp.lastName}?'); // Confirmación de eliminación
     if (!ok) return;
     this.employeesSvc.remove(emp._id).subscribe({
       next: () => this.fetch(),
-      error: (err) => alert(err?.error?.message || 'Error al eliminar')
+      error: (err) => {
+        console.error('Error al eliminar empleado:', err);  // Diagnóstico visual
+        alert(err?.error?.message || 'Error al eliminar');
+      }    
     });
-  }
+  } // Lógica para eliminar un empleado.
 }

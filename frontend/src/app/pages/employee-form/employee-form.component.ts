@@ -52,6 +52,9 @@ export class EmployeeFormComponent implements OnInit {
     }
     this.loading = true;
 
+    const payload= this.form.value;
+    console.log('Payload enviado:', payload); // Validación directa
+    
     const action$ = this.id
       ? this.employeesSvc.update(this.id, this.form.value as Partial<Employee>)
       : this.employeesSvc.create(this.form.value as Employee);
