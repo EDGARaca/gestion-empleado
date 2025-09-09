@@ -4,11 +4,12 @@ import { EmployeesListComponent } from './pages/employees-list/employees-list.co
 import { EmployeeFormComponent } from './pages/employee-form/employee-form.component';
 
 const routes: Routes = [
-  { path: 'employees', component: EmployeesListComponent },
-  { path: 'employees/new', component: EmployeeFormComponent },
-  { path: 'employees/:id/edit', component: EmployeeFormComponent },
-  { path: '', redirectTo: 'employees', pathMatch: 'full' },
-  { path: '**', redirectTo: 'employees' }
+  {path:'', component: EmployeesListComponent}
+  //{ path: 'employees', component: EmployeesListComponent },
+  //{ path: 'employees/new', component: EmployeeFormComponent },
+  //{ path: 'employees/:id/edit', component: EmployeeFormComponent },
+  //{ path: '', redirectTo: 'employees', pathMatch: 'full' },
+  //{ path: '**', redirectTo: 'employees' }
 ];
 
 @NgModule({

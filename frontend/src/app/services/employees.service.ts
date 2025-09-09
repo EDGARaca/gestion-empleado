@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeesService {
-  private baseUrl = '${environment.apiBaseUrl}/employees';
+  private baseUrl = `${environment.apiBaseUrl}/employees`;
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class EmployeesService {
   }
 
   get(id: string): Observable<Employee> {
-    return this.http.get<Employee>('${this.baseUrl}/${id}');
+    return this.http.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
   create(payload: Employee): Observable<Employee> {
@@ -23,10 +23,13 @@ export class EmployeesService {
   }
 
   update(id: string, payload: Partial<Employee>): Observable<Employee> {
-    return this.http.put<Employee>('${this.baseUrl}/${id}', payload);
+    return this.http.put<Employee>(`${this.baseUrl}/${id}`, payload);
   }
 
   remove(id: string): Observable<{ message: string }> {
-    return this.http.delete<{ message: string }>('${this.baseUrl}/${id}');
+    return this.http.delete<{ message: string }>(`${this.baseUrl}/${id}`);
   }
 }
+
+
+

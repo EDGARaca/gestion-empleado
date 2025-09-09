@@ -47,7 +47,7 @@ export class EmployeesListComponent implements OnInit {
 
   deleteEmployee(emp: Employee): void {
     if (!emp._id) return;
-    const ok = confirm('¿Eliminar a ${emp.firstName} ${emp.lastName}?'); // Confirmación de eliminación
+    const ok = confirm(`¿Eliminar a ${emp.firstName} ${emp.lastName}?`); // Confirmación de eliminación
     if (!ok) return;
     this.employeesSvc.remove(emp._id).subscribe({
       next: () => this.fetch(),
